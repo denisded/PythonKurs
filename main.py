@@ -42,14 +42,10 @@ chislostr = len(str)
 chislo = int(str)
 bigchislo = 0
 while chislostr > 0:
-    # print("chislo = ", chislo)
     bigchislonew = chislo // (10 ** (chislostr - 1))
     chislo -= 10 ** (chislostr - 1) * bigchislonew
-    # print("bigchislonew = ", bigchislonew)
-    # print("chislo = ", chislo)
     if bigchislonew > bigchislo:
         bigchislo = bigchislonew
-        # print("bigchislo = ", bigchislo)
         if bigchislo == 9: break
     chislostr -= 1
 print("Самая большая цифра = %d. 4-е задание выполнено." % bigchislo)
