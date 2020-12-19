@@ -48,8 +48,12 @@
     Например: 20м * 5000м * 25кг * 5см = 12500 т
 """
 
-class Road:
-    def massa(self, _length, _width):
+# class Road:
+#     def massa(self, _length, _width):
+#         return print(f"Масса асфальта: {_length * _width * 25 * 5 / 1000} тонн")
+#
+#
+# Road().massa(int(input("Введите длину дороги ")), int(input("Введите ширину дороги ")))
 
 """
 3. Реализовать базовый класс Worker (работник), 
@@ -61,6 +65,31 @@ class Road:
     Проверить работу примера на реальных данных (создать экземпляры класса Position, передать данные, 
     проверить значения атрибутов, вызвать методы экземпляров).
 """
+
+
+class Worker:
+    def __init__(self, name, surname, position, _income):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = _income
+
+
+class Position(Worker):
+    def __init__(self, name, surname, position,  wage, bonus):
+        super().__init__(name, surname, position, _income={"wage": wage, "bonus": bonus})
+
+    def get_full_name(self):
+        print(f"Имя: {self.name}\nФамилия: {self.surname}")
+
+    def get_total_income(self):
+
+        print(f"Доход {self.position}a равен {defe(self._income.values())}")
+
+
+a3 = Position("Иванов", "Иван", "Директор", 1000, 100)
+a3.get_full_name()
+a3.get_total_income()
 
 """
 4. Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты: speed, color, name, is_police (булево). А также методы: go, stop, turn(direction), которые должны сообщать, что машина поехала, остановилась, повернула (куда). Опишите несколько дочерних классов: TownCar, SportCar, WorkCar, PoliceCar. Добавьте в базовый класс метод show_speed, который должен показывать текущую скорость автомобиля. Для классов TownCar и WorkCar переопределите метод show_speed. При значении скорости свыше 60 (TownCar) и 40 (WorkCar) должно выводиться сообщение о превышении скорости.
