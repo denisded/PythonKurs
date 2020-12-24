@@ -10,31 +10,79 @@
     складываем с первым элементом первой строки второй матрицы и т.д.
 """
 
-
 class Matrix:
+
     def __init__(self, listlistov):
         self.listlistov = listlistov
 
     def __str__(self):
+        print(f"Mатрица")
+        for i in self.listlistov:
+            print(' '.join(str(e) for e in i))
+        return ""
 
-        return f"Мартрица {self.listlistov}"
+    def __add__(self, other):
+        addlistlistov = []
+        addlistlistov1 = []
+        for i in range(0, len(self.listlistov)):
+            for j in range(0, len(self.listlistov)):
+                addlistlistov.append(self.listlistov[i][j] + other.listlistov[i][j])
+            addlistlistov1.append(addlistlistov.copy())
+            addlistlistov.clear()
+        return Matrix(addlistlistov1)
 
 
-a1 = [3, 3]
-a2 = [2, 3]
+a1 = [1, 2]
+a2 = [3, 4]
+b1 = [5, 6]
+b2 = [7, 8]
 martix_1 = Matrix([a1, a2])
 print(martix_1)
+martix_2 = Matrix([b1, b2])
+print(martix_2)
+print(martix_1 + martix_2 + martix_2)
+
+
 """
-2. Реализовать проект расчета суммарного расхода ткани на производство одежды. 
-    Основная сущность (класс) этого проекта — одежда, которая может иметь определенное название. 
-    К типам одежды в этом проекте относятся пальто и костюм. 
-    У этих типов одежды существуют параметры: размер (для пальто) и рост (для костюма). 
+2. Реализовать проект расчета суммарного расхода ткани на производство одежды.
+    Основная сущность (класс) этого проекта — одежда, которая может иметь определенное название.
+    К типам одежды в этом проекте относятся пальто и костюм.
+    У этих типов одежды существуют параметры: размер (для пальто) и рост (для костюма).
     Это могут быть обычные числа: V и H, соответственно.
-    Для определения расхода ткани по каждому типу одежды использовать формулы: для пальто (V/6.5 + 0.5), 
+    Для определения расхода ткани по каждому типу одежды использовать формулы: для пальто (V/6.5 + 0.5),
     для костюма (2 * H + 0.3). Проверить работу этих методов на реальных данных.
-    Реализовать общий подсчет расхода ткани. Проверить на практике полученные на этом уроке знания: 
+    Реализовать общий подсчет расхода ткани. Проверить на практике полученные на этом уроке знания:
     реализовать абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property.
 """
+from abc import ABC
+
+
+class odega(ABC):
+    pass
+
+class palto(odega):
+
+    def __init__(self, v: int):
+        self.v = v
+
+    @property
+    def tkan(self):
+        return self.v / 6.5 + 0.5
+
+
+class kastum(odega):
+    def __init__(self, h: int):
+        self.h = h
+
+    @property
+    def tkan(self):
+        return 2 * self.h + 0.3
+
+
+palto_1 = palto(52)
+kastum_1 = kastum(170)
+print(f"На palto_1 нужно ткани {palto_1.tkan}")
+print(f"На kastum_1 нужно ткани {kastum_1.tkan}")
 
 """
 3. Реализовать программу работы с органическими клетками. Необходимо создать класс Клетка. 
@@ -61,3 +109,55 @@ print(martix_1)
     Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5. 
     Тогда метод make_order() вернет строку: *****\n*****\n*****.
 """
+
+
+class kletka:
+    def __init__(self, count):
+        self.count = count
+
+    def __add__(self, other):  # сложение
+        return kletka(self.count + other.count)
+
+    def __sub__(self, other):  # вычитание
+        if self.count - other.count:
+            return kletka(self.count - other.count)
+        else:
+            return "НЕЛЬЗЯ ВЫЧИТАТЬ из меньшего большее"
+
+    def __mul__(self, other):  # умножение
+        return kletka(self.count * other.count)
+
+    def __truediv__(self, other):  # деление
+        return kletka(int(self.count / other.count))
+
+    def make_order(self, ryad):
+        yacheek = '*' * self.count
+        cnt = 1
+        yacheek1 = []
+        for i in yacheek:
+            if cnt % ryad == 0:
+                yacheek1.append("*\n")
+            else:
+                yacheek1.append("*")
+            cnt += 1
+        print(''.join(yacheek1))
+
+
+kletka_1 = kletka(5)
+kletka_2 = kletka(2)
+kletka_3 = kletka_1 + kletka_2
+kletka_4 = kletka_1 - kletka_2
+kletka_5 = kletka_1 * kletka_2
+kletka_6 = kletka_1 / kletka_2
+print("kletka_1")
+kletka_1.make_order(3)
+print("kletka_2")
+kletka_2.make_order(3)
+print("kletka_3")
+kletka_3.make_order(3)
+print("kletka_4")
+kletka_4.make_order(3)
+print("kletka_5")
+kletka_5.make_order(3)
+print("kletka_6")
+kletka_6.make_order(3)
