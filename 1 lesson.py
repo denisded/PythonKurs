@@ -10,7 +10,6 @@ if res == 4:
 else:
     print("Нет 2+2=4. Надеюсь ты просто пошутил:) Первое задание окончено!")
 
-
 # 2. Пользователь вводит время в секундах.
 #   Переведите время в часы, минуты и секунды и выведите в формате чч:мм:сс. Используйте форматирование строк.
 
@@ -20,18 +19,16 @@ min = (timesec - 3600 * hour) // 60
 sec = (timesec - 3600 * hour - min * 60)
 print("В формате чч:мм:сс это, %02d:%02d:%02d. На этом 2-е задание окончено" % (hour, min, sec))
 
-
 # 3. Узнайте у пользователя число n.
 #   Найдите сумму чисел n + nn + nnn.
 #   Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369.
 
 stn = input("Давай выполним 3 задание. Введи любое целое число. ")
 n = int(stn)
-nn = int(stn*2)
-nnn = int(stn*3)
-sumn = n+nn+nnn
+nn = int(stn * 2)
+nnn = int(stn * 3)
+sumn = n + nn + nnn
 print("n = %d, nn = %d, nnn = %d, n+nn+nn = %d. 3-e Задение завершено." % (n, nn, nnn, sumn))
-
 
 # 4. Пользователь вводит целое положительное число.
 #   Найдите самую большую цифру в числе.
@@ -46,10 +43,10 @@ while chislostr > 0:
     chislo -= 10 ** (chislostr - 1) * bigchislonew
     if bigchislonew > bigchislo:
         bigchislo = bigchislonew
-        if bigchislo == 9: break
+        if bigchislo == 9:
+            break
     chislostr -= 1
 print("Самая большая цифра = %d. 4-е задание выполнено." % bigchislo)
-
 
 # 5. Запросите у пользователя значения выручки и издержек фирмы.
 #   Определите, с каким финансовым результатом работает фирма (прибыль — выручка больше издержек,
@@ -63,15 +60,14 @@ profitminus = abs(float(input("Введите издержки ")))
 
 if profitplus > profitminus:
     print("Поздравляю фирма приносла доход в размере %.2f" % (profitplus - profitminus))
-    print("Рентабильность выручки %.2f" % ((profitplus - profitminus)/profitplus))
+    print("Рентабильность выручки %.2f" % ((profitplus - profitminus) / profitplus))
     countrab = int(input("Введите количество сотрудников "))
-    print("Прибыль на 1 сотрудника соатвила %.2f" % ((profitplus - profitminus)/countrab))
-elif profitminus>profitplus:
+    print("Прибыль на 1 сотрудника соатвила %.2f" % ((profitplus - profitminus) / countrab))
+elif profitminus > profitplus:
     print("Фирма работает в убыток равный %.2f, надо это дело исправить" % (profitminus - profitplus))
 else:
     print("Фирма отработала в 0, это лучше чем минус:)")
 print("Молодец 5 задание завершено.")
-
 
 # 6. Спортсмен занимается ежедневными пробежками. В первый день его результат составил a километров.
 #   Каждый день спортсмен увеличивал результат на 10 % относительно предыдущего.
@@ -95,7 +91,7 @@ else:
     print("1-й день, %.2f км, цель %.2f км" % (a, b))
     daycount = 1
     while b > a:
-        a = a/100*10+a
+        a = a / 100 * 10 + a
         daycount += 1
         print("%d-й день, %.2f км, цель %.2f км" % (daycount, a, b))
 print("На %d-й день спортсмен достиг результата — не менее %.2f км." % (daycount, b))
